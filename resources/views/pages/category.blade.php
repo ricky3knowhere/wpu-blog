@@ -2,6 +2,9 @@
 
 @section('container')
 
+<h3 class="pb-4">
+  Post Category : {{ $category }}
+</h3>
 @foreach($articles as $article)
 <article class="mb-5">
   <h5>
