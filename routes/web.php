@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,10 +36,17 @@ Route::get('/blog', [PostController::class, 'index']);
 
 
 Route::get('/c/{category:slug}', function (Category $category) {
-    return view('pages/category', [
-        'title' => $category->name,
+    return view('pages/blog', [
+        'title' => "Post Category : $category->name",
         // 'post' => Post::where('category_id', $category) ->get(),
-        'articles' => $category->posts,
-        'category' => $category->name
+        'articles' => $category->posts ->load(['author', 'category']),
+    ]);
+    
+});
+
+Route::get('/author/{author:username}', function (User $author) {
+    return view('pages/blog', [
+        'title' => "Author by : $author->name",
+        'articles' => $author->posts  ->load(['author', 'category']),
     ]);
 });
