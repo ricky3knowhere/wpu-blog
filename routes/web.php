@@ -19,11 +19,13 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('pages/home', [
+        'active' => 'Home',
         'title' => 'Home'
     ]);
 });
 Route::get('/about', function () {
     return view('pages/about', [
+        'active' => 'About',
         'title' => 'About',
         'name' => 'Takemichy',
         'email' => 'takemichy@toman.jpn',
@@ -37,16 +39,17 @@ Route::get('/blog', [PostController::class, 'index']);
 
 Route::get('/c/{category:slug}', function (Category $category) {
     return view('pages/blog', [
+        'active' => 'Category',
         'title' => "Post Category : $category->name",
         // 'post' => Post::where('category_id', $category) ->get(),
-        'articles' => $category->posts ->load(['author', 'category']),
+        'articles' => $category->posts->load(['author', 'category']),
     ]);
-    
 });
 
 Route::get('/author/{author:username}', function (User $author) {
     return view('pages/blog', [
+        'active' => 'Blog',
         'title' => "Author by : $author->name",
-        'articles' => $author->posts  ->load(['author', 'category']),
+        'articles' => $author->posts->load(['author', 'category']),
     ]);
 });

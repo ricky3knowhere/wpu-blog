@@ -11,18 +11,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link {{ $title == 'Home' ? 'active' : ''}}" href="/">Home</a>
+          <a class="nav-link {{ $active == 'Home' ? 'active' : ''}}" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $title == 'About' ? 'active' : ''}}" href="/about">About</a>
+          <a class="nav-link {{ $active == 'About' ? 'active' : ''}}" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $title == 'Blog' ? 'active' : ''}}" href="/blog">Blog</a>
+          <a class="nav-link {{ $active == 'Blog' ? 'active' : ''}}" href="/blog">Blog</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle {{ $active == 'Category' ? 'active' : ''}}" href="#" id="navbarDropdown"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
