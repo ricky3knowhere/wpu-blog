@@ -26,9 +26,9 @@
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/c/programming">Programming</a></li>
-            <li><a class="dropdown-item" href="/c/graphic-design">Graphic Design</a></li>
-            <li><a class="dropdown-item" href="/c/personal">Personal</a></li>
+            <li><a class="dropdown-item" href="/blog?category=programming">Programming</a></li>
+            <li><a class="dropdown-item" href="/blog?category=graphic-design">Graphic Design</a></li>
+            <li><a class="dropdown-item" href="/blog?category=personal">Personal</a></li>
           </ul>
         </li>
 

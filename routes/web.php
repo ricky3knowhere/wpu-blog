@@ -37,19 +37,19 @@ Route::get('/blog/post/{post:slug}', [PostController::class, 'detail']);
 Route::get('/blog', [PostController::class, 'index']);
 
 
-Route::get('/c/{category:slug}', function (Category $category) {
-    return view('pages/blog', [
-        'active' => 'Category',
-        'title' => "Post Category : $category->name",
-        // 'post' => Post::where('category_id', $category) ->get(),
-        'articles' => $category->posts->load(['author', 'category']),
-    ]);
-});
+// Route::get('/c/{category:slug}', function (Category $category) {
+//     return view('pages/blog', [
+//         'active' => 'Category',
+//         'title' => "Post Category : $category->name",
+//         // 'post' => Post::where('category_id', $category) ->get(),
+//         'articles' => $category->posts->load(['author', 'category']),
+//     ]);
+// });
 
-Route::get('/author/{author:username}', function (User $author) {
-    return view('pages/blog', [
-        'active' => 'Blog',
-        'title' => "Author by : $author->name",
-        'articles' => $author->posts->load(['author', 'category']),
-    ]);
-});
+// Route::get('/author/{author:username}', function (User $author) {
+//     return view('pages/blog', [
+//         'active' => 'Blog',
+//         'title' => "Author by : $author->name",
+//         'articles' => $author->posts->load(['author', 'category']),
+//     ]);
+// });
