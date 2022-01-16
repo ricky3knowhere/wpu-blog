@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Post;
-use App\Models\Category;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Logincontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Models\User;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,20 +36,11 @@ Route::get('/blog/post/{post:slug}', [PostController::class, 'detail']);
 
 Route::get('/blog', [PostController::class, 'index']);
 
+Route::get('/login', [Logincontroller::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [Logincontroller::class, 'authenticate']);
+Route::post('/logout', [Logincontroller::class, 'logout']);
 
-// Route::get('/c/{category:slug}', function (Category $category) {
-//     return view('pages/blog', [
-//         'active' => 'Category',
-//         'title' => "Post Category : $category->name",
-//         // 'post' => Post::where('category_id', $category) ->get(),
-//         'articles' => $category->posts->load(['author', 'category']),
-//     ]);
-// });
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
-// Route::get('/author/{author:username}', function (User $author) {
-//     return view('pages/blog', [
-//         'active' => 'Blog',
-//         'title' => "Author by : $author->name",
-//         'articles' => $author->posts->load(['author', 'category']),
-//     ]);
-// });
+Route::get('/dashboard', fn () => view('/dashboard/index'))->middleware('auth');
