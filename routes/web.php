@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\Logincontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -38,9 +38,11 @@ Route::get('/blog', [PostController::class, 'index']);
 
 Route::get('/login', [Logincontroller::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [Logincontroller::class, 'authenticate']);
-Route::post('/logout', [Logincontroller::class, 'logout']);
+Route::post('/logout', [Logincontroller::class, 'logout'])->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', fn () => view('/dashboard/index'))->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class);

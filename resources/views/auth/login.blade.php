@@ -29,7 +29,8 @@
           <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+          <input type="password" class="form-control" id="floatingPassword" name="password" required
+            placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
         <button type="submit" class="btn btn-info text-light mt-3 w-100">Login</button>
