@@ -75,9 +75,12 @@ class DashboardPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('/dashboard/posts/edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -87,9 +90,27 @@ class DashboardPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'title' => 'required|min:24|max:255',
+            'category_id' => 'required',
+            'body' => 'required|min:255'
+        ];
+
+        if ($request->slug !== $post->slug) {
+            $rules['slug'] =  'required|unique:posts';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request['body']), 150);
+
+
+        Post::where('id', $post->id)->update($validatedData);
+
+        return redirect('/dashboard/posts')->with('notif', 'Blog successfuly upadated.');
     }
 
     /**
@@ -100,7 +121,9 @@ class DashboardPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy('id', $id);
+
+        return redirect('/dashboard/posts')->with('notif', 'Blog successfuly deleted.');
     }
 
     public function checkSlug(Request $request)

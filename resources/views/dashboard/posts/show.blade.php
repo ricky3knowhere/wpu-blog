@@ -9,10 +9,14 @@
       <h4 class="card-title fs-3 pb-3">{{ $post->title }}</h4>
       <a href="/dashboard/posts" class="btn btn-sm btn-info"><span class="me-1"
           data-feather="arrow-left"></span>Back</a>
-      <a href="/dashboard/" class="btn btn-sm btn-warning"><span class="me-1" data-feather="edit"></span>Edit</a>
-      <a href="/dashboard/" class="btn btn-sm btn-danger"><span class="me-1"
-          data-feather="trash-2"></span>Delete</a>
-
+      <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-warning"><span class="me-1"
+          data-feather="edit"></span>Edit</a>
+      <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
+        @method('delete')
+        @csrf
+        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this blog..?')"><span
+            class="me-1" data-feather="trash-2"></span>Delete</button>
+      </form>
       <img src="https://source.unsplash.com/random/200x80?{{ $post->category->name }}" class="mt-5 card-img-top"
         alt="{{ $post->category->name }}">
 

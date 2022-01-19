@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
     <h1 class="h2">Posts list by {{ auth()->user()->name }}</h1>
   </div>
-  <div class="table-responsive col-lg-8">
+  <div class="table-responsive col-lg-9">
     @if (session('notif'))
       <div class="alert alert-success" role="alert">
         <h6>Success</h6>
@@ -32,10 +32,15 @@
             <td>{{ $post->category->name }}</td>
             <td>
               <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-primary"><span data-feather="eye"></span></a>
-              <a href="/dashboard/posts/edit/{{ $post->slug }}" class="badge bg-warning"><span
+              <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span
                   data-feather="edit"></span></a>
-              <a href="/dashboard/posts/delete/{{ $post->slug }}" class="badge bg-danger"><span
-                  data-feather="trash-2"></span></a>
+
+              <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
+                @method('delete')
+                @csrf
+                <button type="submit" class="badge bg-danger border-0"
+                  onclick="return confirm('Delete this blog..?')"><span data-feather="trash-2"></span></button>
+              </form>
             </td>
           </tr>
         @endforeach

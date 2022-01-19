@@ -46,9 +46,9 @@
                 <hr class="dropdown-divider">
               </li>
               <li>
-                <form action="/logout" method="post">
+                <form action="/logout" method="post" id="logout">
                   @csrf
-                  <button type="submit" class="dropdown-item"><i
+                  <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure to Logout..?')"><i
                       class="bi bi-box-arrow-right me-2"></i>Logout</a></button>
                 </form>
             </ul>
@@ -56,7 +56,7 @@
 
         @else()
           <li class="nav-item"><a href="/login" class="nav-link {{ $active == 'Login' ? 'active' : '' }}"><i
-                class="bi bi-box-arrow-in-right me-2"></i>Login</a></li>
+                class="bi bi-box-arrow-in-right me-2" id="log-out"></i>Login</a></li>
         @endauth()
       </ul>
     </div>
