@@ -12,6 +12,18 @@
 
   <!-- Dashboard CSS -->
   <link href="/css/dashboard.css" rel="stylesheet">
+
+  {{-- Trix Edit --}}
+  <link rel="stylesheet" type="text/css" href="/css/trix.css">
+  <script type="text/javascript" src="/js/trix.js"></script>
+
+  {{-- Customize CSS --}}
+  <style>
+    trix-toolbar [data-trix-button-group="file-tools"] {
+      display: none;
+    }
+
+  </style>
 </head>
 
 <body>
