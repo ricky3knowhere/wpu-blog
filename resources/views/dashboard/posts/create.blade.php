@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-lg-7 mb-5">
-    <form action="/dashboard/posts" method="post">
+    <form action="/dashboard/posts" method="post" enctype="multipart/form-data">
       @csrf
       <div class="form-floating mb-3">
         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
@@ -35,6 +35,16 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <label for="image" class="form-label">Blog Image</label>
+        <img class="img-fluid mb-3 d-block" id="blog-image" width="300px">
+        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
+          onchange="imgPreview()">
+        @error('image')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+      </div>
+
       <div class="form-group mb-3">
         <label for="body" class="pb-2">Blog Body</label>
         @error('body')
@@ -48,6 +58,7 @@
   </div>
 
   <script>
+    // Auto Slug Handler
     const title = document.querySelector('#title')
     const slug = document.querySelector('#slug')
 
@@ -57,8 +68,16 @@
         .then(data => slug.value = data.slug)
     })
 
+    // Trix Textbok Handler
     document.addEventListener('trix-file-accept', function(e) {
       e.preventDefault()
     })
+
+    // Blog Image Preview Handler
+    function imgPreview() {
+      const imgPreview = document.querySelector('#blog-image')
+      const blob = URL.createObjectURL(image.files[0]);
+      imgPreview.src = blob;
+    }
   </script>
 @endsection

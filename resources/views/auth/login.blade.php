@@ -27,6 +27,9 @@
           <input type="email" class="form-control" id="floatingInput" name="email" required autofocus
             value="{{ old('email') }}" placeholder="Email address">
           <label for="floatingInput">Email address</label>
+          @error('email')
+            <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
         </div>
         <div class="form-floating">
           <input type="password" class="form-control" id="floatingPassword" name="password" required

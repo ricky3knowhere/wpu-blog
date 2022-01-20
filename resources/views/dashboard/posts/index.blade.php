@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
     <h1 class="h2">Posts list by {{ auth()->user()->name }}</h1>
   </div>
-  <div class="table-responsive col-lg-9">
+  <div class="table-responsive col-lg-10">
     @if (session('notif'))
       <div class="alert alert-success" role="alert">
         <h6>Success</h6>
@@ -35,7 +35,7 @@
               <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-warning"><span
                   data-feather="edit"></span></a>
 
-              <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
+              <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
                 @method('delete')
                 @csrf
                 <button type="submit" class="badge bg-danger border-0"

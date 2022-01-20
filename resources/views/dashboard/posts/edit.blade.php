@@ -6,7 +6,7 @@
   </div>
 
   <div class="col-lg-7 mb-5">
-    <form action="/dashboard/posts/{{ $post->slug }}" method="post">
+    <form action="/dashboard/posts/{{ $post->slug }}" method="post" enctype="multipart/form-data">
       @method('put')
       @csrf
       <div class="form-floating mb-3">
@@ -37,6 +37,23 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <label for="image" class="form-label">Blog Image</label>
+
+        @if ($post->image)
+          <img src="/storage/{{ $post->image }}" class="img-fluid mb-3 d-block" id="blog-image" width="300px">
+        @else
+          <img class="img-fluid mb-3 d-block" id="blog-image" width="300px">
+        @endif
+
+        <input value="{{ $post->image }}" name="oldImage" hidden>
+        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
+          onchange="imgPreview()">
+        @error('image')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+      </div>
+
       <div class="form-group mb-3">
         <label for="body" class="pb-2">Blog Body</label>
         @error('body')
@@ -50,6 +67,7 @@
   </div>
 
   <script>
+    // Auto Slug Handler
     const title = document.querySelector('#title')
     const slug = document.querySelector('#slug')
 
@@ -62,5 +80,12 @@
     document.addEventListener('trix-file-accept', function(e) {
       e.preventDefault()
     })
+
+    // Blog Image Preview Handler
+    function imgPreview() {
+      const imgPreview = document.querySelector('#blog-image')
+      const blob = URL.createObjectURL(image.files[0]);
+      imgPreview.src = blob;
+    }
   </script>
 @endsection
