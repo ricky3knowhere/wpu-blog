@@ -8,11 +8,11 @@
 
       <h4 class="card-title fs-3">{{ $article->title }}</h4>
       <span class="text-muted" style="font-size: .8rem;">by
-        <a href="/blog?author={{ $article->author->username }}"
+        <a href="/blog/filter?author={{ $article->author->username }}"
           class="text-decoration-none">{{ $article->author->name }}</a>
         |
         posted at {{ $article->created_at->diffForHumans() }}
-        <a href="/blog?category={{ $article->category->slug }}"
+        <a href="/blog/filter?category={{ $article->category->slug }}"
           style="position:absolute; opacity: .7;margin-top: .5em;">
           <span class="badge bg-warning rounded-pill text-dark ms-2 mb-1">{{ $article->category->name }}</span>
         </a>
@@ -30,7 +30,7 @@
         {!! $article->body !!}
       </article>
 
-      <a href="/blog/" class="btn text-light btn-info mt-3">Back</a>
+      <a href="/blog/all" class="btn text-light btn-info mt-3">Back</a>
     </div>
   </div>
 

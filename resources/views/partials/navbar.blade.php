@@ -11,24 +11,24 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link {{ $active == 'Home' ? 'active' : '' }}" href="/">Home</a>
+          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active == 'About' ? 'active' : '' }}" href="/about">About</a>
+          <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active == 'Blog' ? 'active' : '' }}" href="/blog">Blog</a>
+          <a class="nav-link {{ Request::is('blog/all') ? 'active' : '' }}" href="/blog/all">Blog</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ $active == 'Category' ? 'active' : '' }}" href="#" id="navbarDropdown"
-            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle {{ Request::is('blog/filter*') ? 'active' : '' }}" href="#"
+            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/blog?category=programming">Programming</a></li>
-            <li><a class="dropdown-item" href="/blog?category=graphic-design">Graphic Design</a></li>
-            <li><a class="dropdown-item" href="/blog?category=personal">Personal</a></li>
+            <li><a class="dropdown-item" href="/blog/filter?category=programming">Programming</a></li>
+            <li><a class="dropdown-item" href="/blog/filter?category=graphic-design">Graphic Design</a></li>
+            <li><a class="dropdown-item" href="/blog/filter?category=personal">Personal</a></li>
           </ul>
         </li>
 
@@ -55,10 +55,11 @@
           </li>
 
         @else()
-          <li class="nav-item"><a href="/login" class="nav-link {{ $active == 'Login' ? 'active' : '' }}"><i
+          <li class="nav-item"><a href="/login" class="nav-link {{ Request::is('login') ? 'active' : '' }}"><i
                 class="bi bi-box-arrow-in-right me-2" id="log-out"></i>Login</a></li>
         @endauth()
       </ul>
+
     </div>
   </div>
 </nav>

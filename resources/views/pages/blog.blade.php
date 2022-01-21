@@ -7,7 +7,7 @@
 
   <div class="row justify-content-end mb-3">
     <div class="col-md-4">
-      <form action="/blog">
+      <form action="/blog/filter">
         <div class="input-group mb-3">
 
           @if (request('category'))
@@ -29,7 +29,7 @@
   @if ($articles->count())
     <div class="container">
       <div class="card text-center">
-        <a href="/blog?category={{ $articles[0]->category->slug }}"
+        <a href="/blog/filter?category={{ $articles[0]->category->slug }}"
           style="position:absolute; opacity: .7;margin-top: .5em;">
           <span class="badge bg-warning rounded-pill text-dark ms-2 mb-1">{{ $articles[0]->category->name }}</span>
         </a>
@@ -48,7 +48,7 @@
           <h5 class="card-title fs-4"><a href="/blog/post/{{ $articles[0]->slug }}"
               class="text-decoration-none text-dark">{{ $articles[0]->title }}</a></h5>
           <span class="text-muted" style="font-size: .8rem;">by
-            <a href="/blog?author={{ $articles[0]->author->username }}"
+            <a href="/blog/filter?author={{ $articles[0]->author->username }}"
               class="text-decoration-none">{{ $articles[0]->author->name }}</a>
             posted at {{ $articles[0]->created_at->diffForHumans() }}
           </span>
@@ -66,7 +66,7 @@
           <div class="col-md-4 my-3">
 
             <div class="card">
-              <a href="/blog?category={{ $article->category->slug }}"
+              <a href="/blog/filter?category={{ $article->category->slug }}"
                 style="position:absolute; opacity: .7;margin-top: .5em;">
                 <span class="badge bg-warning rounded-pill text-dark ms-2 mb-1">{{ $article->category->name }}</span>
               </a>
@@ -83,7 +83,7 @@
                 <h5 class="card-title fs-5"><a href="/blog/post/{{ $article->slug }}"
                     class="text-decoration-none text-dark">{{ $article->title }}</a></h5>
                 <span class="text-muted" style="font-size: .8rem;">by
-                  <a href="/blog?author={{ $article->author->username }}"
+                  <a href="/blog/filter?author={{ $article->author->username }}"
                     class="text-decoration-none">{{ $article->author->name }}</a> |
                   posted at {{ $article->created_at->diffForHumans() }}
                 </span>

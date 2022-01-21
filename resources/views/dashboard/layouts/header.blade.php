@@ -6,12 +6,22 @@
   </button>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <form action="/logout" method="post">
+      <form action="/logout" method="post" class="form-logout">
         @csrf
-        <button type="submit" class="nav-link px-3 border-0 bg-dark"> <span data-feather="log-out"
-            class="me-2"></span>
+        <button type="button" class="nav-link px-3 border-0 bg-dark btn-logout" onclick="logoutConfirm()"> <span
+            data-feather="log-out" class="me-2"></span>
           Logout</a></button>
       </form>
     </div>
   </div>
 </header>
+
+<script>
+  // Logout Confirm Handler
+  function logoutConfirm() {
+    const isLogout = confirm('Are you sure to logout..?')
+    if (isLogout) {
+      document.querySelector('.form-logout').submit()
+    }
+  }
+</script>
